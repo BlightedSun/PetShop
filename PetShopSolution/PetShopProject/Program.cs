@@ -72,7 +72,7 @@ namespace PetShopProject
                         dogLeash.description = Console.ReadLine();
                         Console.WriteLine("Enter length (inches): ");
                         dogLeash.lengthInches = int.Parse(Console.ReadLine());
-                        Console.WriteLine(" : ");
+                        Console.WriteLine("Enter material: ");
                         dogLeash.material = Console.ReadLine();
 
                         //DISPLAY PROPERTIES OF CREATED PRODUCT
