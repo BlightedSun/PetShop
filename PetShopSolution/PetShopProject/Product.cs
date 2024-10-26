@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetShopProject
 {
-    class Product
+    public class Product
     {
         public string name { get; set; }
         public decimal price { get; set; }
@@ -15,13 +15,13 @@ namespace PetShopProject
         public string description { get; set; }
 
     }
-    class CatFood : Product 
+    public class CatFood : Product 
     {
         public double weightPounds { get; set; }
-        public bool kittenFood { get; set; }
+        public bool IsKittenFood { get; set; }
     
     }
-    class DogLeash : Product
+    public class DogLeash : Product
     {
         public int lengthInches { get; set; }
         public string material { get; set; }

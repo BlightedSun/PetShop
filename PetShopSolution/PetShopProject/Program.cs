@@ -1,6 +1,10 @@
-﻿using System;
+﻿using PetShopProject;
+using System;
 using System.ComponentModel.Design;
 using System.Text.Json;
+
+
+
 
 namespace PetShopProject
 {
@@ -8,21 +12,27 @@ namespace PetShopProject
     {
         static void Main(string[] args)
         {
+            string userInput = string.Empty;
+
+            //CREATE AN INSTANCE OF OBJECT 'PRODUCTLOGIC'
+            var productLogic = new ProductLogic();
+
             //ASK USER TO CREATE PRODUCT OR EXIT
             Console.WriteLine("Press '1' to add a product.");
             Console.WriteLine("Type 'exit' to quit.");
-
+                              
+            
             //GET USER INPUT
-            string userInput = Console.ReadLine();
+            userInput = Console.ReadLine();
 
             //SAVE USER PRODUCT INPUT
             string productChoice;
 
             //METHOD TO CREATE PRODUCT
-            void CreateProduct(string productChoice)
-            { 
-            
-            }
+            //void CreateProduct(string productChoice)
+            //{ 
+            //
+            //}
             
             //RUN THIS WHILE INPUT IS NOT "EXIT"
             while (userInput.ToLower() != "exit")
@@ -46,7 +56,7 @@ namespace PetShopProject
                         Console.WriteLine("Enter description: ");
                         catFood.description = Console.ReadLine();
                         Console.WriteLine("Kitten food (true or false): ");
-                        catFood.kittenFood = bool.Parse(Console.ReadLine());
+                        catFood.IsKittenFood = bool.Parse(Console.ReadLine());
                         Console.WriteLine("Enter weight (Pounds): ");
                         catFood.weightPounds = double.Parse(Console.ReadLine());
 
@@ -54,7 +64,12 @@ namespace PetShopProject
                         // "\n" CREATES NEW LINE
                         //Console.WriteLine("Name: " + catFood.name + "\nPrice: " + catFood.price + "\nQuantity: " + catFood.quantity + 
                         //    "\nDescription: " + catFood.description + "\nKitten food: " + catFood.kittenFood + "\nWeight (Pounds): " + catFood.weightPounds);
-                        Console.WriteLine(JsonSerializer.Serialize(catFood));
+                       
+                        //Console.WriteLine(JsonSerializer.Serialize(catFood));
+
+                        
+                        productLogic.AddProduct(catFood);
+                        Console.WriteLine("Product has been added.");
 
                     }
                     else if (productChoice.ToLower() == "dog leash")
