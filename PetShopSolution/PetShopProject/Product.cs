@@ -9,24 +9,31 @@ namespace PetShopProject
 {
     public class Product
     {
-        public string name { get; set; }
-        public decimal price { get; set; }
-        public int quantity { get; set; }
-        public string description { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public string Description { get; set; }
 
     }
     public class CatFood : Product 
     {
-        public double weightPounds { get; set; }
+        public double WeightPounds { get; set; }
         public bool IsKittenFood { get; set; }
     
     }
     public class DogLeash : Product
     {
-        public int lengthInches { get; set; }
-        public string material { get; set; }
+        public int LengthInches { get; set; }
+        public string Material { get; set; }
 
     }
+
+   
+   
+  
+
+    
+
 
 }
 
