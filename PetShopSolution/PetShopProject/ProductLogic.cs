@@ -61,6 +61,15 @@ namespace PetShopProject
 
         }
 
+        public CatFood GetCatFoodByName(string name)
+        {
+            return _catFoods[name];
+
+        }
+
+
+
+
         //METHOD TO LIST ALL PRODUCTS
         List<Product> GetAllProducts()
         {

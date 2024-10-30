@@ -18,13 +18,13 @@ namespace PetShopProject
             var productLogic = new ProductLogic();
 
             //ASK USER TO CREATE PRODUCT OR EXIT
-            Console.WriteLine("Press '1' to add a product.");
-            Console.WriteLine("Type 'exit' to quit.");
-            Console.WriteLine("Press '2' to search for product");
+            //Console.WriteLine("Press '1' to add a product.");
+            //Console.WriteLine("Type 'exit' to quit.");
+            //Console.WriteLine("Press '2' to search for product");
                               
             
             //GET USER INPUT
-            userInput = Console.ReadLine();
+           //userInput = Console.ReadLine();
 
             //SAVE USER PRODUCT INPUT
             string productChoice;
@@ -38,6 +38,15 @@ namespace PetShopProject
             //RUN THIS WHILE INPUT IS NOT "EXIT"
             while (userInput.ToLower() != "exit")
             {
+                //ASK USER TO CREATE PRODUCT OR EXIT
+                Console.WriteLine("Press '1' to add a product.");
+                Console.WriteLine("Type 'exit' to quit.");
+                Console.WriteLine("Press '2' to search for a dog leash");
+
+
+                //GET USER INPUT
+                userInput = Console.ReadLine();
+
                 if (userInput == "1")
                 {
                     Console.WriteLine("What Product? Choose from: cat food, dog leash...");
@@ -93,8 +102,12 @@ namespace PetShopProject
 
                         //DISPLAY PROPERTIES OF CREATED PRODUCT
                         // "\n" CREATES NEW LINE
-                        Console.WriteLine("Name: " + dogLeash.Name + "\nPrice: " + dogLeash.Price + "\nQuantity: " + dogLeash.Quantity +
-                            "\nDescription: " + dogLeash.Description + "\nEnter length (inches): " + dogLeash.LengthInches + "\nEnter material: " + dogLeash.Material);
+                        //Console.WriteLine("Name: " + dogLeash.Name + "\nPrice: " + dogLeash.Price + "\nQuantity: " + dogLeash.Quantity +
+                        //    "\nDescription: " + dogLeash.Description + "\nEnter length (inches): " + dogLeash.LengthInches + "\nEnter material: " + dogLeash.Material);
+
+                        productLogic.AddProduct(dogLeash);
+                        Console.WriteLine("Product has been added.");
+
                     }
                     else
                     {
@@ -108,21 +121,41 @@ namespace PetShopProject
                 else if (userInput == "2")  
                 {
                     string search;
-                    Console.WriteLine("Please enter the name of the product you are looking for.");
+                    Console.WriteLine("Please enter the name of the dog leash you are looking for.");
                     search = Console.ReadLine();
-                    //RESPONSE IS A NEW OBJECT USING DOGLEASH AS A BLUEPRINT TO RECIEVE GETDOGLEASHBYNAME
+                    //RESPONSE IS A NEW OBJECT USING DOGLEASH (can this be Product?) AS A BLUEPRINT TO RECIEVE GETDOGLEASHBYNAME
                     DogLeash response = productLogic.GetDogLeashByName(search);
-                    Console.WriteLine(response.Name);
+                    Console.WriteLine("Name: " + response.Name);
+                    Console.WriteLine("Price: " + response.Price);
+                    Console.WriteLine("Quantity: " + response.Quantity);
+                    Console.WriteLine("Description: " + response.Description);
+                    Console.WriteLine("Length (inches): " + response.LengthInches);
+                    Console.WriteLine("Material: " + response.Material);
 
                 }
+
+                else if (userInput == "3")
+                {
+                    string search;
+                    Console.WriteLine("Please enter the name of the cat food you are looking for.");
+                    search = Console.ReadLine();
+                    //RESPONSE IS A NEW OBJECT USING DOGLEASH (can this be Product?) AS A BLUEPRINT TO RECIEVE GETDOGLEASHBYNAME
+                    CatFood response = productLogic.GetCatFoodByName(search);
+                    Console.WriteLine("Name: " + response.Name);
+                    Console.WriteLine("Price: " + response.Price);
+                    Console.WriteLine("Quantity: " + response.Quantity);
+                    Console.WriteLine("Description: " + response.Description);
+                    Console.WriteLine("Weight (pounds): " + response.WeightPounds);
+                    Console.WriteLine("Kitten food: " + response.IsKittenFood);
+
+                }
+
                 else 
                 { 
                 
                 }
 
-                Console.WriteLine("Press '1' to add a product.");
-                Console.WriteLine("Type 'exit' to quit.");
-                userInput = Console.ReadLine();
+                
             }
            
         }
