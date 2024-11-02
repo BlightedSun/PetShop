@@ -38,10 +38,11 @@ namespace PetShopProject
             //RUN THIS WHILE INPUT IS NOT "EXIT"
             while (userInput.ToLower() != "exit")
             {
-                //ASK USER TO CREATE PRODUCT OR EXIT
-                Console.WriteLine("Press '1' to add a product.");
+                //ASK USER TO CREATE PRODUCT OR EXIT OR SEARCH
                 Console.WriteLine("Type 'exit' to quit.");
+                Console.WriteLine("Press '1' to add a product.");
                 Console.WriteLine("Press '2' to search for a dog leash");
+                Console.WriteLine("Press '3' to search for a cat food");
 
 
                 //GET USER INPUT
@@ -111,7 +112,7 @@ namespace PetShopProject
                     }
                     else
                     {
-
+                        Console.WriteLine("Not a valid input.");
                     }
 
 
@@ -125,15 +126,23 @@ namespace PetShopProject
                     search = Console.ReadLine();
                     //RESPONSE IS A NEW OBJECT USING DOGLEASH (can this be Product?) AS A BLUEPRINT TO RECIEVE GETDOGLEASHBYNAME
                     DogLeash response = productLogic.GetDogLeashByName(search);
-                    Console.WriteLine("Name: " + response.Name);
-                    Console.WriteLine("Price: " + response.Price);
-                    Console.WriteLine("Quantity: " + response.Quantity);
-                    Console.WriteLine("Description: " + response.Description);
-                    Console.WriteLine("Length (inches): " + response.LengthInches);
-                    Console.WriteLine("Material: " + response.Material);
+                    //CHECK TO SEE IF PRODUCT CAN BE FOUND
+                    if (response == null)
+                    {
+                        Console.WriteLine("Product not found");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Name: " + response.Name);
+                        Console.WriteLine("Price: " + response.Price);
+                        Console.WriteLine("Quantity: " + response.Quantity);
+                        Console.WriteLine("Description: " + response.Description);
+                        Console.WriteLine("Length (inches): " + response.LengthInches);
+                        Console.WriteLine("Material: " + response.Material);
+                    }
+                    
 
                 }
-
                 else if (userInput == "3")
                 {
                     string search;
@@ -141,18 +150,25 @@ namespace PetShopProject
                     search = Console.ReadLine();
                     //RESPONSE IS A NEW OBJECT USING DOGLEASH (can this be Product?) AS A BLUEPRINT TO RECIEVE GETDOGLEASHBYNAME
                     CatFood response = productLogic.GetCatFoodByName(search);
-                    Console.WriteLine("Name: " + response.Name);
-                    Console.WriteLine("Price: " + response.Price);
-                    Console.WriteLine("Quantity: " + response.Quantity);
-                    Console.WriteLine("Description: " + response.Description);
-                    Console.WriteLine("Weight (pounds): " + response.WeightPounds);
-                    Console.WriteLine("Kitten food: " + response.IsKittenFood);
+                    //CHECK TO SEE IF PRODUCT CAN BE FOUND
+                    if (response == null)
+                    {
+                        Console.WriteLine("Product not found");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Name: " + response.Name);
+                        Console.WriteLine("Price: " + response.Price);
+                        Console.WriteLine("Quantity: " + response.Quantity);
+                        Console.WriteLine("Description: " + response.Description);
+                        Console.WriteLine("Weight (pounds): " + response.WeightPounds);
+                        Console.WriteLine("Kitten food: " + response.IsKittenFood);
+                    }
 
                 }
-
                 else 
-                { 
-                
+                {
+                    Console.WriteLine("Not a valid input.");
                 }
 
                 

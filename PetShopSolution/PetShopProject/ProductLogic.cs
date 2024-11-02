@@ -27,6 +27,7 @@ namespace PetShopProject
         }
 
         //METHOD TO ADD PRODUCT
+        //ACCESS IS PUBLIC, RETURN VOID, NAME, ???
         public void AddProduct(Product product) 
         {
             _products.Add(product);
@@ -57,14 +58,26 @@ namespace PetShopProject
         */
         public DogLeash GetDogLeashByName(string name)
         {
-            return _dogLeashes[name];
-
+            try
+            {
+                return _dogLeashes[name];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public CatFood GetCatFoodByName(string name)
         {
-            return _catFoods[name];
-
+            try 
+            {
+                return _catFoods[name];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 
