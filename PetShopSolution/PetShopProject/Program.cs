@@ -17,24 +17,11 @@ namespace PetShopProject
             //CREATE AN INSTANCE OF OBJECT 'PRODUCTLOGIC'
             var productLogic = new ProductLogic();
 
-            //ASK USER TO CREATE PRODUCT OR EXIT
-            //Console.WriteLine("Press '1' to add a product.");
-            //Console.WriteLine("Type 'exit' to quit.");
-            //Console.WriteLine("Press '2' to search for product");
-                              
-            
-            //GET USER INPUT
-           //userInput = Console.ReadLine();
 
             //SAVE USER PRODUCT INPUT
             string productChoice;
 
-            //METHOD TO CREATE PRODUCT
-            //void CreateProduct(string productChoice)
-            //{ 
-            //
-            //}
-            
+                       
             //RUN THIS WHILE INPUT IS NOT "EXIT"
             while (userInput.ToLower() != "exit")
             {
@@ -55,22 +42,6 @@ namespace PetShopProject
 
                     if (productChoice.ToLower() == "cat food")
                     {
-                        Console.WriteLine("New cat food: ");
-                        CatFood catFood = new CatFood();
-                        //name price quantity description kitten weightPounds
-                        Console.WriteLine("Enter name: ");
-                        catFood.Name = Console.ReadLine();
-                        Console.WriteLine("Enter price: ");
-                        catFood.Price = decimal.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter quantity: ");
-                        catFood.Quantity = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter description: ");
-                        catFood.Description = Console.ReadLine();
-                        Console.WriteLine("Kitten food (true or false): ");
-                        catFood.IsKittenFood = bool.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter weight (Pounds): ");
-                        catFood.WeightPounds = double.Parse(Console.ReadLine());
-
                         //DISPLAY PROPERTIES OF CREATED PRODUCT
                         // "\n" CREATES NEW LINE
                         //Console.WriteLine("Name: " + catFood.name + "\nPrice: " + catFood.price + "\nQuantity: " + catFood.quantity + 
@@ -78,36 +49,28 @@ namespace PetShopProject
 
                         //Console.WriteLine(JsonSerializer.Serialize(catFood));
 
-
-                        productLogic.AddProduct(catFood);
+                        //'CREATECATFOOD' HAPPENS FIRST BECAUSE IT IS IN THE ( ) LIKE ORDER OF OPERATIONS.
+                        //"USE THE INPUT OF 'CREATECATFOOD' HERE"
+                        productLogic.AddProduct(CatFood.CreateCatFood());
                         Console.WriteLine("Product has been added.");
 
                     }
                     else if (productChoice.ToLower() == "dog leash")
                     {
-                        Console.WriteLine("New dog leash.");
-                        DogLeash dogLeash = new DogLeash();
-                        //name price quantity description lengthInches material
-                        Console.WriteLine("Enter name: ");
-                        dogLeash.Name = Console.ReadLine();
-                        Console.WriteLine("Enter price: ");
-                        dogLeash.Price = decimal.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter quantity: ");
-                        dogLeash.Quantity = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter description: ");
-                        dogLeash.Description = Console.ReadLine();
-                        Console.WriteLine("Enter length (inches): ");
-                        dogLeash.LengthInches = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter material: ");
-                        dogLeash.Material = Console.ReadLine();
 
                         //DISPLAY PROPERTIES OF CREATED PRODUCT
                         // "\n" CREATES NEW LINE
                         //Console.WriteLine("Name: " + dogLeash.Name + "\nPrice: " + dogLeash.Price + "\nQuantity: " + dogLeash.Quantity +
                         //    "\nDescription: " + dogLeash.Description + "\nEnter length (inches): " + dogLeash.LengthInches + "\nEnter material: " + dogLeash.Material);
 
-                        productLogic.AddProduct(dogLeash);
+                        productLogic.AddProduct(DogLeash.CreateDogLeash());
                         Console.WriteLine("Product has been added.");
+
+                    }
+                    else if (productChoice == "exit") 
+                    {
+                        System.Environment.Exit(1);
+
 
                     }
                     else
@@ -133,6 +96,7 @@ namespace PetShopProject
                     }
                     else
                     {
+                        //SUPER METHOD?
                         Console.WriteLine("Name: " + response.Name);
                         Console.WriteLine("Price: " + response.Price);
                         Console.WriteLine("Quantity: " + response.Quantity);
@@ -173,8 +137,10 @@ namespace PetShopProject
 
                 
             }
-           
+
+            System.Environment.Exit(1);
         }
+        
     }
     
     
