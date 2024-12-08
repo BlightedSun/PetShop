@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace PetShopProject
 {
+
+    //why doesnt this go in main product logic class?
+    //public static class ListExtentions
+    //{
+        
+    //    public static List<T> InStock<T>(this List<T> list) where T : Product
+    //    {
+    //        //List<T> inStock;
+    //        //return inStock;
+    //        //inStock only created in method, needs to be taken out
+    //    }
+    //}
+
+
+
     public class ProductLogic : IProductLogic
     {
 
@@ -88,23 +103,10 @@ namespace PetShopProject
 
 
         //METHOD TO LIST ALL PRODUCTS. USING THE PRODUCT LIST, GO THROUGH EACH PRODUCT TYPE AND PRINT OUT INFO
-        //FIX++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void GetAllProducts()
         {
 
-
-            foreach (DogLeash product in _products.OfType<DogLeash>())
-            {
-                Console.WriteLine("Name: " + product.Name);
-                Console.WriteLine("Price: " + product.Price);
-                Console.WriteLine("Quantity: " + product.Quantity);
-                Console.WriteLine("Description: " + product.Description);
-                Console.WriteLine("Length (inches): " + product.LengthInches);
-                Console.WriteLine("Material: " + product.Material);
-
-            }
-
-
+        
             foreach (CatFood product in _products.OfType<CatFood>())
             {
                 Console.WriteLine("Name: " + product.Name);
@@ -130,38 +132,25 @@ namespace PetShopProject
             }
         }
         //SHOWS PRODUCTS WITH QUANTITY GREATER THAN 0
-        //NEED FIX+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public List<Product> GetOnlyInStockProducts()
+        //_products.Where(method placeholder => definition of the method).collection
+        public void GetOnlyInStockProducts()
         {
-            List<string> inStock = new List<string>();
-            foreach (var prod in _products)
+            List<string> inStock = _products.Where(x => x.Quantity > 0).Select(x => x.Name).ToList();
+            foreach (var prod in inStock)
             {
-                if (prod.Quantity > 0)
-                {
 
-                    //return _products.Where(x => x.Quantity > 0).ToList();
-                    AddProduct(prod);
-                }
 
-                Console.WriteLine(prod.Name);
+                Console.WriteLine(prod);
                 
                 
 
             }
-            return;
+             
         }
 
 
-        //not in interface
-        public static class ListExtentions
-        {
-            public static List<T> InStock<T>(this List<T> list) where T : Product
-            {
-
-                return inStock.ToList();
-                //inStock only created in method, needs to be taken out
-            }
-        }
+        
+        
 
 
         //not in interface
@@ -185,9 +174,9 @@ namespace PetShopProject
     interface IProductLogic
     {
          public void AddProduct(Product product);
-         public void GetAllProducts(); //working on
+         public void GetAllProducts(); 
          public DogLeash GetDogLeashByName(string name);
-         public List<Product> GetOnlyInStockProducts();  //working on
+         public void GetOnlyInStockProducts();  
 
 
 
