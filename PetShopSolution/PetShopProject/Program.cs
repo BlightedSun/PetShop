@@ -1,5 +1,6 @@
 ﻿using PetShopProject;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Text.Json;
 
@@ -30,11 +31,14 @@ namespace PetShopProject
                 Console.WriteLine("Press '1' to add a product.");
                 Console.WriteLine("Press '2' to search for a dog leash");
                 Console.WriteLine("Press '3' to search for a cat food");
+                Console.WriteLine("Press '9' to search for in-stock products.");
+                Console.WriteLine("Press '0' for product list");
 
 
                 //GET USER INPUT
                 userInput = Console.ReadLine();
 
+                //CREATE PRODUCT
                 if (userInput == "1")
                 {
                     Console.WriteLine("What Product? Choose from: cat food, dog leash...");
@@ -42,10 +46,9 @@ namespace PetShopProject
 
                     if (productChoice.ToLower() == "cat food")
                     {
-                        //DISPLAY PROPERTIES OF CREATED PRODUCT
+                       
                         // "\n" CREATES NEW LINE
-                        //Console.WriteLine("Name: " + catFood.name + "\nPrice: " + catFood.price + "\nQuantity: " + catFood.quantity + 
-                        //    "\nDescription: " + catFood.description + "\nKitten food: " + catFood.kittenFood + "\nWeight (Pounds): " + catFood.weightPounds);
+                        
 
                         //Console.WriteLine(JsonSerializer.Serialize(catFood));
 
@@ -82,6 +85,7 @@ namespace PetShopProject
 
 
                 }
+                //SEARCH FOR DOGLEASH
                 else if (userInput == "2")  
                 {
                     string search;
@@ -107,6 +111,7 @@ namespace PetShopProject
                     
 
                 }
+                //SEARCH FOR CATFOOD
                 else if (userInput == "3")
                 {
                     string search;
@@ -129,6 +134,15 @@ namespace PetShopProject
                         Console.WriteLine("Kitten food: " + response.IsKittenFood);
                     }
 
+                }
+                else if (userInput == "9")
+                {
+                    productLogic.GetOnlyInStockProducts();
+                    
+                }
+                else if (userInput == "0")
+                {
+                    productLogic.GetAllProducts();
                 }
                 else 
                 {

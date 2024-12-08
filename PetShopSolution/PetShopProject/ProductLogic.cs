@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetShopProject
 {
-    public class ProductLogic
+    public class ProductLogic : IProductLogic
     {
 
 
@@ -18,17 +18,21 @@ namespace PetShopProject
         Dictionary<string, CatFood> _catFoods = new Dictionary<string, CatFood>();
 
 
+
+
+
         //CREATING AN INSTANCE (CONSTRUCTOR) OF 'PRODUCTLOGIC' CLASS
         public ProductLogic()
         {
             _products = new List<Product>();
-
+            AddProduct(new DogLeash { Name = "Leather Leash", Price = 3, Quantity = 5, Description = "Not the best...", LengthInches = 24, Material = "Leather" });
+            AddProduct(new DogLeash { Name = "Glitter Leash", Price = 5, Quantity = 0, Description = "The best!", LengthInches = 24, Material = "Glitter" });
 
         }
 
         //METHOD TO ADD PRODUCT
         //ACCESS IS PUBLIC, RETURN VOID, NAME, ???
-        public void AddProduct(Product product) 
+        public void AddProduct(Product product)
         {
             _products.Add(product);
 
@@ -70,7 +74,7 @@ namespace PetShopProject
 
         public CatFood GetCatFoodByName(string name)
         {
-            try 
+            try
             {
                 return _catFoods[name];
             }
@@ -83,16 +87,114 @@ namespace PetShopProject
 
 
 
-        //METHOD TO LIST ALL PRODUCTS
-        List<Product> GetAllProducts()
+        //METHOD TO LIST ALL PRODUCTS. USING THE PRODUCT LIST, GO THROUGH EACH PRODUCT TYPE AND PRINT OUT INFO
+        //FIX++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        public void GetAllProducts()
         {
-            return _products;
+
+
+            foreach (DogLeash product in _products.OfType<DogLeash>())
+            {
+                Console.WriteLine("Name: " + product.Name);
+                Console.WriteLine("Price: " + product.Price);
+                Console.WriteLine("Quantity: " + product.Quantity);
+                Console.WriteLine("Description: " + product.Description);
+                Console.WriteLine("Length (inches): " + product.LengthInches);
+                Console.WriteLine("Material: " + product.Material);
+
+            }
+
+
+            foreach (CatFood product in _products.OfType<CatFood>())
+            {
+                Console.WriteLine("Name: " + product.Name);
+                Console.WriteLine("Price: " + product.Price);
+                Console.WriteLine("Quantity: " + product.Quantity);
+                Console.WriteLine("Description: " + product.Description);
+                Console.WriteLine("Weight (pounds): " + product.WeightPounds);
+                Console.WriteLine("Kitten food: " + product.IsKittenFood);
+            }
+
+
+        
+
+            foreach (DogLeash product in _products.OfType<DogLeash>())
+            {
+                Console.WriteLine("Name: " + product.Name);
+                Console.WriteLine("Price: " + product.Price);
+                Console.WriteLine("Quantity: " + product.Quantity);
+                Console.WriteLine("Description: " + product.Description);
+                Console.WriteLine("Length (inches): " + product.LengthInches);
+                Console.WriteLine("Material: " + product.Material);
+
+            }
         }
+        //SHOWS PRODUCTS WITH QUANTITY GREATER THAN 0
+        //NEED FIX+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        public List<Product> GetOnlyInStockProducts()
+        {
+            List<string> inStock = new List<string>();
+            foreach (var prod in _products)
+            {
+                if (prod.Quantity > 0)
+                {
+
+                    //return _products.Where(x => x.Quantity > 0).ToList();
+                    AddProduct(prod);
+                }
+
+                Console.WriteLine(prod.Name);
+                
+                
+
+            }
+            return;
+        }
+
+
+        //not in interface
+        public static class ListExtentions
+        {
+            public static List<T> InStock<T>(this List<T> list) where T : Product
+            {
+
+                return inStock.ToList();
+                //inStock only created in method, needs to be taken out
+            }
+        }
+
+
+        //not in interface
+        public decimal GetTotalPriceOfInventory()
+        {
+            return 0;
+
+        }
+
+
+
 
 
 
     }
 
-    
+   
 
+
+    //INTERFACE TELLS WHAT THE CLASS/METHOD SHOULD INCLUDE, BUT THE CLASS/METHOD ITSELF DEFINES HOW TO USE WHAT IS IN IT.
+    interface IProductLogic
+    {
+         public void AddProduct(Product product);
+         public void GetAllProducts(); //working on
+         public DogLeash GetDogLeashByName(string name);
+         public List<Product> GetOnlyInStockProducts();  //working on
+
+
+
+
+    }
+    
 }
+
+
+
