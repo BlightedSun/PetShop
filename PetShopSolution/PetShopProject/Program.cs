@@ -31,6 +31,7 @@ namespace PetShopProject
                 Console.WriteLine("Press '1' to add a product.");
                 Console.WriteLine("Press '2' to search for a dog leash");
                 Console.WriteLine("Press '3' to search for a cat food");
+                Console.WriteLine("Press '8' for total price of inventory");
                 Console.WriteLine("Press '9' to search for in-stock products.");
                 Console.WriteLine("Press '0' for product list");
 
@@ -135,10 +136,28 @@ namespace PetShopProject
                     }
 
                 }
+                else if (userInput == "8")
+                {
+                    Console.WriteLine(productLogic.GetTotalPriceOfInventory());
+                    Console.WriteLine("Here is the total inventory price...OF ALL ITEMS: " + productLogic.TheActualPriceOfInventory());
+                }
                 else if (userInput == "9")
                 {
-                    productLogic.GetOnlyInStockProducts();
+                   
+
+                    List<string> inStock = productLogic.GetOnlyInStockProducts();
+                    foreach (var prod in inStock)
+                    {
+
+
+                        Console.WriteLine(prod);
+
+
+
+                    }
                     
+                    
+
                 }
                 else if (userInput == "0")
                 {

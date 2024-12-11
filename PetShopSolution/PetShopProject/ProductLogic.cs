@@ -6,18 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetShopProject
 {
-
-    //why doesnt this go in main product logic class?
-    //public static class ListExtentions
-    //{
-        
-    //    public static List<T> InStock<T>(this List<T> list) where T : Product
-    //    {
-    //        //List<T> inStock;
-    //        //return inStock;
-    //        //inStock only created in method, needs to be taken out
-    //    }
-    //}
+    
 
 
 
@@ -42,6 +31,8 @@ namespace PetShopProject
             _products = new List<Product>();
             AddProduct(new DogLeash { Name = "Leather Leash", Price = 3, Quantity = 5, Description = "Not the best...", LengthInches = 24, Material = "Leather" });
             AddProduct(new DogLeash { Name = "Glitter Leash", Price = 5, Quantity = 0, Description = "The best!", LengthInches = 24, Material = "Glitter" });
+            AddProduct(new CatFood { Name = "Mert Chow", Price = 100, Quantity = 2, Description = "Only the best for the boy!", WeightPounds = 21, IsKittenFood = false });
+
 
         }
 
@@ -133,19 +124,11 @@ namespace PetShopProject
         }
         //SHOWS PRODUCTS WITH QUANTITY GREATER THAN 0
         //_products.Where(method placeholder => definition of the method).collection
-        public void GetOnlyInStockProducts()
+        public List<string> GetOnlyInStockProducts()
         {
-            List<string> inStock = _products.Where(x => x.Quantity > 0).Select(x => x.Name).ToList();
-            foreach (var prod in inStock)
-            {
-
-
-                Console.WriteLine(prod);
-                
-                
-
-            }
-             
+            
+            return _products.InStock().Select(x => x.Name).ToList();
+            
         }
 
 
@@ -156,11 +139,26 @@ namespace PetShopProject
         //not in interface
         public decimal GetTotalPriceOfInventory()
         {
-            return 0;
+
+
+            return _products.InStock().Select(x => x.Price).Sum();
 
         }
 
+        public decimal TheActualPriceOfInventory()
+        {
+            List<Product> inventory = _products.InStock();
 
+            decimal totalCost = 0;
+
+            //get list of products. for each product multiply quantity * price. then add the total cost
+            foreach (var product in _products)
+            {
+                totalCost += (product.Quantity * product.Price);
+
+            }
+            return totalCost;
+        }
 
 
 
@@ -176,8 +174,9 @@ namespace PetShopProject
          public void AddProduct(Product product);
          public void GetAllProducts(); 
          public DogLeash GetDogLeashByName(string name);
-         public void GetOnlyInStockProducts();  
-
+         public List<string> GetOnlyInStockProducts();  
+        public decimal GetTotalPriceOfInventory();
+        public decimal TheActualPriceOfInventory();
 
 
 
