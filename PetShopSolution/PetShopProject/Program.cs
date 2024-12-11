@@ -1,4 +1,5 @@
-﻿using PetShopProject;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PetShopProject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -6,17 +7,27 @@ using System.Text.Json;
 
 
 
+var serviceCollection = CreateServiceCollection();
+var productLogic = serviceCollection.GetService<IProductLogic>();
+static IServiceProvider CreateServiceCollection()
+{
+    //passing ProductLogic as a generic service
+    return new ServiceCollection()
+        .AddTransient<IProductLogic, ProductLogic>()
+        .BuildServiceProvider();
+}
 
 namespace PetShopProject
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             string userInput = string.Empty;
 
             //CREATE AN INSTANCE OF OBJECT 'PRODUCTLOGIC'
-            var productLogic = new ProductLogic();
+            //var productLogic = new ProductLogic()
 
 
             //SAVE USER PRODUCT INPUT

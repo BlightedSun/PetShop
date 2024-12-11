@@ -9,7 +9,7 @@ namespace PetShopProject
     public static class ListExtentions
     {
 
-        //CURRENTLY NOT USED
+        
             
 
         //'T' means its something. dont know what yet. but it will be a list in this case. InStock is the name of the method. this List named 'list'. where T inherits from Product

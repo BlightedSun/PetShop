@@ -136,7 +136,7 @@ namespace PetShopProject
         
 
 
-        //not in interface
+        
         public decimal GetTotalPriceOfInventory()
         {
 
