@@ -4,22 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace PetShopProject
 {
-    internal class Nuget
-    {
+    //internal class Nuget
+    //{
 
-        IServiceProvider serviceCollection = CreateServiceCollection();
-        ProductLogic productLogic = serviceCollection.GetService<IProductLogic>();
-        static IServiceProvider CreateServiceCollection()
-        {
-            //passing ProductLogic as a generic service
-            return new ServiceCollection()
-                .AddTransient<IProductLogic, ProductLogic>()
-                .BuildServiceProvider();
-        }
+    //    IServiceProvider serviceCollection = CreateServiceCollection();
+    //    ProductLogic productLogic = serviceCollection.GetService<IProductLogic>();
+    //    static IServiceProvider CreateServiceCollection()
+    //    {
+    //        //passing ProductLogic as a generic service
+    //        return new ServiceCollection()
+    //            .AddTransient<IProductLogic, ProductLogic>()
+    //            .BuildServiceProvider();
+    //    }
 
 
-    }
+    //}
 }
