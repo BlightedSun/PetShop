@@ -177,8 +177,7 @@ namespace PetShopProject
          public List<string> GetOnlyInStockProducts();  
         public decimal GetTotalPriceOfInventory();
         public decimal TheActualPriceOfInventory();
-
-
+        public CatFood GetCatFoodByName(string name);
 
     }
     
